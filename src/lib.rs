@@ -52,40 +52,28 @@ mod tests {
     #[test]
     fn it_works2() {
         let haystack = "ab c d";
-        let letters = StrSplit::new(haystack, " ");
-        assert_eq!(
-            letters.into_iter().collect::<Vec<_>>(),
-            vec!["ab", "c", "d"]
-        );
+        let letters: Vec<_> = StrSplit::new(haystack, " ").collect();
+        assert_eq!(letters, vec!["ab", "c", "d"]);
     }
 
     #[test]
     fn it_works3() {
         let haystack = "a:b c: ddd:";
         let letters = StrSplit::new(haystack, ":");
-        assert_eq!(
-            letters.into_iter().collect::<Vec<_>>(),
-            vec!["a", "b c", " ddd"]
-        );
+        assert!(letters.eq(vec!["a", "b c", " ddd"]));
     }
 
     #[test]
     fn it_works4() {
         let haystack = "Hello world";
         let letters = StrSplit::new(haystack, "o");
-        assert_eq!(
-            letters.into_iter().collect::<Vec<_>>(),
-            vec!["Hell", " w", "rld"]
-        );
+        assert!(letters.eq(vec!["Hell", " w", "rld"]))
     }
 
     #[test]
     fn it_works5() {
         let haystack = "Hello world";
         let letters = StrSplit::new(haystack, " wo");
-        assert_eq!(
-            letters.into_iter().collect::<Vec<_>>(),
-            vec!["Hello", "rld"]
-        );
+        assert!(letters.eq(vec!["Hello", "rld"]));
     }
 }
