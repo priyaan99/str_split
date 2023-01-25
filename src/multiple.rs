@@ -56,7 +56,7 @@ mod tests {
         assert_eq!(
             // letters.into_iter().collect::<Vec<&str>>(),
             letters.into_iter().collect::<Vec<_>>(),
-            vec!["a", "b", "c", "d"]
+            vec!["a", "b", "c", "d", ""]
         );
     }
 
@@ -71,7 +71,7 @@ mod tests {
     fn it_works3() {
         let haystack = "a:b c: ddd:";
         let letters = StrSplit::new(haystack, ":");
-        assert!(letters.eq(vec!["a", "b c", " ddd"]));
+        assert!(letters.eq(vec!["a", "b c", " ddd", ""]));
     }
 
     #[test]
@@ -92,10 +92,8 @@ mod tests {
     fn it_works6() {
         let haystack = "Hello world";
         let letters: Vec<_> = StrSplit::new(haystack, "_").collect();
+        // println!("{:?}", letters); assert_eq!(letter.len(), 0);
 
-        println!("{:?}", letters);
-        assert_eq!(letters.len(), 0);
-
-        // assert!(letters.eq(Vec::<&str>::new().into_iter()));
+        assert_eq!(letters, vec!["Hello world"]);
     }
 }
